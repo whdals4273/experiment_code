@@ -1,0 +1,251 @@
+arduino_port: COM18
+arduino_baud: 115200
+arduino_boot_wait_s: 2.0
+serial_timeout_s: 0.5
+psu_driver: 2230G
+psu_resource_1: GPIB0::12::INSTR
+psu_resource_2: GPIB0::11::INSTR
+enable_psu_control: true
+psu_settle_s: 0.2
+psu_timeout_ms: 1000
+visa_backend: ''
+safe_shutdown: true
+bltop_supply: 2
+bltop_channel: 1
+blbtm_supply: 2
+blbtm_channel: 2
+bltop_off_supply: 1
+bltop_off_channel: 1
+blbtm_off_supply: 1
+blbtm_off_channel: 2
+vdd_supply: 2
+vdd_channel: 3
+vread_supply: 1
+vread_channel: 3
+bltop_init_v: 0.0
+blbtm_init_v: 0.0
+bltop_off_init_v: 0.0
+blbtm_off_init_v: 0.0
+vdd_init_v: 2.0
+vread_init_v: 1.0
+command_name: ADC_VERIFY
+use_vcap_input: false
+vcap_v: 0.0
+bltop_v: 1.0
+blbtm_v: 1.0
+pw_us: 100
+settle_after_opc_us: 50
+repeat: 1
+opc_timeout_ms: 5000
+update_gate_settle_us: 50
+q: 1.0
+precision: 8
+step_us: 10
+write_bl_topbtm_v: 1.65
+samples: 4
+warmup: 0
+settle_us: 250
+inter_us: 25
+avg: 1
+read_delay: 0
+write_bl_settle_after_opc_us: 50
+write_bl_opc_timeout_ms: 5000
+write_bl_gate_settle_us: 50
+post_us: 0
+points: 10
+initial_wait_ms: 0
+interval_ms: 1000
+cycles: 10
+lut_vcap_values: '-1.65, -1, 0, 1, 1.65'
+lut_q_values: '-1, -0.5, 0, 0.5, 1'
+lut_cycles: 1
+adc_channel: 4
+adc_resistance_kohm: 150.0
+adc_capacitance_nf: 6.0
+adc_vread_v: 1.0
+adc_reverse_polarity: true
+adc_pulse_us: 4000
+adc_repeats: 3
+adc_samples: 4
+adc_inter_us: 25
+adc_settle_us: 250
+adc_vref_v: 3.3
+adc_vinp_v: 0.0
+adc_tolerance_pct: 10.0
+adc_tolerance_counts: 3.0
+result_dir: scenarios/arduino_4T1C_dotprod/results
+__groups__:
+  Connection:
+  - arduino_port
+  - arduino_baud
+  - arduino_boot_wait_s
+  - serial_timeout_s
+  PSU Setup:
+  - psu_driver
+  - psu_resource_1
+  - psu_resource_2
+  - enable_psu_control
+  - psu_settle_s
+  - psu_timeout_ms
+  - visa_backend
+  - safe_shutdown
+  Channel Mapping:
+  - bltop_supply
+  - bltop_channel
+  - blbtm_supply
+  - blbtm_channel
+  - bltop_off_supply
+  - bltop_off_channel
+  - blbtm_off_supply
+  - blbtm_off_channel
+  - vdd_supply
+  - vdd_channel
+  - vread_supply
+  - vread_channel
+  Initial Bias:
+  - bltop_init_v
+  - blbtm_init_v
+  - bltop_off_init_v
+  - blbtm_off_init_v
+  - vdd_init_v
+  - vread_init_v
+  Command:
+  - command_name
+  Update Parameters:
+  - use_vcap_input
+  - vcap_v
+  - bltop_v
+  - blbtm_v
+  - pw_us
+  - settle_after_opc_us
+  - repeat
+  - opc_timeout_ms
+  - update_gate_settle_us
+  Read Parameters:
+  - q
+  - precision
+  - step_us
+  - write_bl_topbtm_v
+  - samples
+  - warmup
+  - settle_us
+  - inter_us
+  - avg
+  - read_delay
+  - write_bl_settle_after_opc_us
+  - write_bl_opc_timeout_ms
+  - write_bl_gate_settle_us
+  Compound Parameters:
+  - post_us
+  - points
+  - initial_wait_ms
+  - interval_ms
+  - cycles
+  Lookup Table Parameters:
+  - lut_vcap_values
+  - lut_q_values
+  - lut_cycles
+  ADC Verify Parameters:
+  - adc_channel
+  - adc_resistance_kohm
+  - adc_capacitance_nf
+  - adc_vread_v
+  - adc_reverse_polarity
+  - adc_pulse_us
+  - adc_repeats
+  - adc_samples
+  - adc_inter_us
+  - adc_settle_us
+  - adc_vref_v
+  - adc_vinp_v
+  - adc_tolerance_pct
+  - adc_tolerance_counts
+  Results:
+  - result_dir
+__tooltips__:
+  vcap_v: "목표 VCAP = BLTOP − BLBTM (V). 양수: TOP=VCAP, BTM=0. 음수: TOP=0, BTM=|VCAP|. 실제 저장값은 소자와 측정 조건에 따라 달라집니다."
+  use_vcap_input: "체크하면 VCAP으로 UPDATE 전압을 계산합니다. 해제하면 BLTOP/BLBTM을 직접 입력합니다. 두 BL ON 전원은 정상 결선입니다."
+  safe_shutdown: 'true: zero and disable mapped outputs after the command. false:
+    retain enabled outputs; firmware zeros BL rails at command completion. Compound
+    reads retain prepared read bias inside the loop. Errors/abort force zero and OFF.'
+  vread_init_v: VREAD PSU setpoint for commands containing READ; initialized before
+    the command. Standalone UPDATE keeps this channel OFF.
+  blbtm_init_v: "Must be 0.0. Firmware sets normally wired BLBTM ON for UPDATE and S2 read bias; the BLBTM OFF input stays at zero."
+  bltop_init_v: Must be 0.0. Firmware controls phase voltages. Compound loops prepare
+    read bias once and zero all four BL rails on completion.
+  command_name: UPDATE | READ_ACTUAL | READ_REFERENCE | UPDATE_AND_READ | RETENTION_TEST
+    | READ_DISTURB_TEST | LOOK_UP_TABLE_TEST | ADC_VERIFY | DEBUG_FIRE
+  lut_vcap_values: "LOOK_UP_TABLE_TEST 전용. 쉼표로 구분한 VCAP(V) 목록. 각 K·q 조합마다 K를 다시 씁니다."
+  lut_q_values: "LOOK_UP_TABLE_TEST 전용. −1~1의 q 목록. 결과 표는 행=q, 열=VCAP이며 입력 순서를 유지합니다."
+  lut_cycles: "각 K·q 조합의 ACTUAL+REFERENCE 반복 횟수. 일반 cycles 대신 사용하며 표에는 delta 평균을 표시합니다."
+  bltop_v: "[Manual UPDATE mode] Nonnegative PSU magnitude for normally wired BLTOP ON. VCAP = BLTOP - BLBTM. Disabled when VCAP input is checked."
+  blbtm_v: "[Manual UPDATE mode] Nonnegative PSU magnitude for normally wired BLBTM ON. Higher BLBTM than BLTOP writes negative VCAP. Disabled when VCAP input is checked."
+  pw_us: S1/S2 update pulse width in microseconds
+  settle_after_opc_us: Delay between OPC confirmation and S1/S2 pulse (us)
+  repeat: Number of S1/S2 pulses per update command
+  opc_timeout_ms: Max wait for the BLTOP/BLBTM OPC PSU_SET replies in milliseconds
+  update_gate_settle_us: Delay (us) after BLTOP_GATE/BLBTM_GATE (pins 46/34) open,
+    before S1/S2 open
+  q: 'Query value [-1.0, 1.0]: sign -> HL routing, magnitude -> WL PWM duty cycle'
+  precision: PWM resolution in bits (total WL slots = 2^precision)
+  step_us: Duration of each WL PWM slot in microseconds
+  write_bl_topbtm_v: "[REQUIRED] Nonnegative read bias (typically +1.65 V). BLTOP ON -> N3/S1 (pin 46 HIGH), BLBTM ON -> N4/S2 (pin 34 HIGH). q>=0: ACTUAL N4, REFERENCE N3; q<0: ACTUAL N3, REFERENCE N4. Compound loops prepare ON rails once; both OFF rails stay zero."
+  samples: Number of ADC samples to keep per read
+  warmup: Number of ADC samples to discard before kept samples
+  settle_us: Delay (us) between asserting read path and WL integration start
+  inter_us: Delay (us) between consecutive kept ADC samples
+  avg: 1 = report average of kept samples, 0 = report last sample only
+  read_delay: Extra 10 us DFF1-only ticks after PWM loop for integrator settling
+  write_bl_settle_after_opc_us: Delay (us) after read-bias OPC confirmation. Applied
+    once after bias preparation for retention/disturb, before initial_wait_ms.
+  write_bl_opc_timeout_ms: Max wait for the write_bl_topbtm_v OPC PSU_SET reply in
+    milliseconds
+  write_bl_gate_settle_us: "Delay (us) after BL MUX selection before opening S1/S2. UPDATE_AND_READ/RETENTION_TEST/READ_DISTURB_TEST prepare both MUXes once and hold both ON biases through read, ADC and reset. For periodic commands this preparation precedes initial_wait_ms and biases remain held between reads. Standalone READ_ACTUAL/READ_REFERENCE apply it per read and park both MUXes LOW before ADC."
+  post_us: Delay (us) between UPDATE and READ in UPDATE_AND_READ
+  points: Number of ACTUAL readbacks in RETENTION_TEST
+  initial_wait_ms: Extra wait (ms) after read-bias preparation and initial INFO output,
+    before the first retention read or disturb pair. UPDATE cleanup and PSU preparation
+    still add to the first read age.
+  interval_ms: ACTUAL read-start to next ACTUAL read-start period (ms); DISTURB uses
+    pair-start to pair-start. 0 = fastest available. Impossible periods are rejected;
+    lateness above 50 us stops the run.
+  cycles: Number of ACTUAL+REFERENCE read pairs in READ_DISTURB_TEST
+  enable_psu_control: Must be true for UPDATE, all READ/compound commands, and DEBUG_FIRE.
+    PING/ABORT may use serial only.
+  bltop_supply: '[REQUIRED] psu_resource_N index for the normal-wired BLTOP ON input;
+    all four BL inputs need independent PSU channels.'
+  blbtm_supply: "[REQUIRED] psu_resource_N index for normal-wired BLBTM ON: UPDATE and S2 read bias. Pin 34 HIGH selects this input."
+  bltop_off_supply: "[REQUIRED] psu_resource_N index for normal-wired BLTOP OFF. Held at 0 V as the N3 parking input; independently mapped."
+  bltop_off_channel: '[REQUIRED] Independent PSU channel 1-3 for BLTOP_OFF; cannot
+    share any other mapped rail.'
+  blbtm_off_supply: "[REQUIRED] Independent normal-wired BLBTM OFF input. Always zero in this sequence; pin 34 LOW parks N4 here between reads, during PSU waits and ADC capture."
+  blbtm_off_channel: '[REQUIRED] Independent PSU channel 1-3 for BLBTM_OFF; cannot
+    share any other mapped rail.'
+  bltop_off_init_v: Must be 0.0. BLTOP_OFF is independently controlled and is 0 V
+    at rest.
+  blbtm_off_init_v: "Must be 0.0. BLBTM OFF stays zero for idle/parking; positive S2 read bias now uses BLBTM ON."
+  vdd_supply: 'N1/N2 OFF 공통 전원의 PSU 번호. 0이면 사용하지 않습니다. 저장 키: vdd_supply.'
+  vread_supply: psu_resource_N index for VREAD (0 = not used)
+  psu_resource_1: 'VISA resource string or alias for PSU #1'
+  psu_resource_2: 'VISA resource string or alias for PSU #2 (leave empty if unused)'
+  vdd_channel: 'N1/N2 OFF 공통 전원의 PSU 채널(1–3). 저장 키: vdd_channel.'
+  vdd_init_v: 'N1/N2 OFF 전원의 초기 PSU 설정값(V). 예: 역결선 2V는 실제 −2V. 극성은 외부 결선으로 정하며 자동
+    반전하지 않습니다. 저장 키: vdd_init_v.'
+  adc_channel: 저항을 선택한 WLUx–BLUx에 연결한 뒤 해당 채널만 실행합니다.
+  adc_resistance_kohm: 외부 검증 저항의 실제 측정값 또는 공칭값 (kΩ).
+  adc_capacitance_nf: 선택한 채널의 적분 커패시터 용량 (nF). 셀의 VCAP이 아닙니다.
+  adc_vread_v: PSU에 입력할 양의 전압 크기. 역결선 여부는 아래 항목에 지정합니다.
+  adc_reverse_polarity: 실제 VREAD 결선과 일치시킵니다. 체크 시 계산에 음전압을 사용하며 결선을 자동 변경하지 않습니다.
+  adc_vinp_v: 적분기의 virtual-ground 기준 전압. 외부 VINP의 실제 공급값과 일치시킵니다.
+__choices__:
+  command_name:
+  - UPDATE
+  - READ_ACTUAL
+  - READ_REFERENCE
+  - UPDATE_AND_READ
+  - RETENTION_TEST
+  - READ_DISTURB_TEST
+  - ADC_VERIFY
+  - DEBUG_FIRE
+  - PING
+  - ABORT

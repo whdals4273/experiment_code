@@ -1,0 +1,52 @@
+SMU1:
+  mode: "VAR1"
+  vname: "VG"
+  iname: "IG"
+  vdc: 0.0
+  vstart: -2.0
+  vstop: 5.0
+  vstep: 0.05
+  compliance: 0.1
+  integration: "MED"
+
+SMU2:
+  mode: "CONST"
+  vname: "VD"
+  iname: "ID"
+  vdc: 0.1
+  vstart: 0.0
+  vstop: 3.0
+  vstep: 0.05
+  compliance: 0.1
+  integration: "MED"
+
+SMU3:
+  mode: "COMMON"
+  vname: "VS"
+  iname: "IS"
+  vdc: 0.0
+  vstart: 0.0
+  vstop: 0.0
+  vstep: 0.05
+  compliance: 0.1
+  integration: "MED"
+
+SMU4:
+  mode: "COMMON"
+  vname: "VB"
+  iname: "IB"
+  vdc: 0.0
+  vstart: 0.0
+  vstop: 0.0
+  vstep: 0.05
+  compliance: 0.1
+  integration: "MED"
+
+stress:
+  time_list: [100, 250, 500, 750, 1000]
+  VG_stress: 3.0
+  VD_stress: 0.0
+
+sweep_spot_id:
+  sweep_var: 1
+  vsweep: 0.0

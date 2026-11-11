@@ -1,0 +1,226 @@
+mode: "OTF"
+config_yaml_path: ""
+perform_initial_sweep: true
+initial_sweep_config_yaml_path: ""
+pre_stress_delay_s: 0.0
+initial_sweep_var: 1
+initial_vstart: ""
+initial_vstop: ""
+initial_vstep: ""
+initial_sweep_mode: ""
+fast_sweep: true
+exp_log_file: ""
+save_path: ""
+header_list: []
+stress_channel_values: {}
+stress_voltage_list: []
+oscope_enabled: true
+oscope_resource: "Oscope"
+oscope_timeout_ms: 5000
+oscope_debug: false
+oscope_config_yaml_path: "src/macros/parameter_analyzer/igzo_stability/configs/otf_oscope.yml"
+oscope_mode: "single"
+oscope_window_channel: 1
+oscope_time_scale_s: 1.0e-6
+oscope_delay_time_s: 0.0
+oscope_time_position_s: 0.0
+oscope_window_voltage_scale_mv: 500.0
+oscope_window_offset_voltage_mv: 0.0
+oscope_trigger_mode: "EDGE"
+oscope_trigger_source: "EXTernal"
+oscope_trigger_slope: "POSitive"
+oscope_trigger_level_mv: 0.0
+oscope_trigger_coupling: "DC"
+oscope_trigger_sweep: "NORM"
+oscope_chan1_display: true
+oscope_chan1_coupling: "DC"
+oscope_chan1_impedance: "ONEMeg"
+oscope_chan1_offset_mv: 0.0
+oscope_chan1_scale_mv: 500.0
+oscope_chan2_display: false
+oscope_chan2_coupling: "DC"
+oscope_chan2_impedance: "ONEMeg"
+oscope_chan2_offset_mv: 0.0
+oscope_chan2_scale_mv: 500.0
+oscope_channels: [1]
+oscope_points: 2000
+oscope_wait_timeout_s: 8.0
+oscope_arm_settle_s: 0.1
+oscope_output_subdir: "oscope_waveforms"
+pulsegen_resource: "PulseGen"
+pulsegen_timeout_ms: 5000
+pulsegen_debug: false
+switch_resource: ""
+switch_connect_mode: "auto"
+switch_debug: false
+switch_route_config_path: ""
+switch_route_configurations: {}
+switch_analyzer_route_key: ""
+switch_pulsegen_route_key: ""
+switch_clear_previous: true
+switch_force_reapply: false
+switch_settle_s: 0.0
+pulse_sequence:
+  - label: "read_pulse_1"
+    mode: "trigger"
+    enable_channel_1: true
+    enable_channel_2: true
+    channel_1_settings:
+      read_v: 0.5
+      width: 1.0e-3
+      period: 5.0e-3
+      rise: 1.0e-6
+      fall: 1.0e-6
+      zsource: 50.0
+      zload: 1000000.0
+    channel_2_settings:
+      read_v: 0.1
+      width: 1.0e-3
+      period: 5.0e-3
+      rise: 1.0e-6
+      fall: 1.0e-6
+      zsource: 50.0
+      zload: 1000000.0
+debug_timing: false
+show_progress: true
+timing_log_path: ""
+notes: ""
+
+__groups__:
+  OTF Pulse Scope Test:
+    - mode
+    - config_yaml_path
+    - perform_initial_sweep
+    - initial_sweep_config_yaml_path
+    - pre_stress_delay_s
+    - initial_sweep_var
+    - initial_vstart
+    - initial_vstop
+    - initial_vstep
+    - initial_sweep_mode
+    - fast_sweep
+    - exp_log_file
+    - save_path
+    - header_list
+    - stress_channel_values
+    - stress_voltage_list
+    - oscope_enabled
+    - oscope_resource
+    - oscope_timeout_ms
+    - oscope_debug
+    - oscope_config_yaml_path
+    - oscope_mode
+    - oscope_window_channel
+    - oscope_time_scale_s
+    - oscope_delay_time_s
+    - oscope_time_position_s
+    - oscope_window_voltage_scale_mv
+    - oscope_window_offset_voltage_mv
+    - oscope_trigger_mode
+    - oscope_trigger_source
+    - oscope_trigger_slope
+    - oscope_trigger_level_mv
+    - oscope_trigger_coupling
+    - oscope_trigger_sweep
+    - oscope_chan1_display
+    - oscope_chan1_coupling
+    - oscope_chan1_impedance
+    - oscope_chan1_offset_mv
+    - oscope_chan1_scale_mv
+    - oscope_chan2_display
+    - oscope_chan2_coupling
+    - oscope_chan2_impedance
+    - oscope_chan2_offset_mv
+    - oscope_chan2_scale_mv
+    - oscope_channels
+    - oscope_points
+    - oscope_wait_timeout_s
+    - oscope_arm_settle_s
+    - oscope_output_subdir
+    - pulsegen_resource
+    - pulsegen_timeout_ms
+    - pulsegen_debug
+    - switch_resource
+    - switch_connect_mode
+    - switch_debug
+    - switch_route_config_path
+    - switch_route_configurations
+    - switch_analyzer_route_key
+    - switch_pulsegen_route_key
+    - switch_clear_previous
+    - switch_force_reapply
+    - switch_settle_s
+    - pulse_sequence
+    - debug_timing
+    - show_progress
+    - timing_log_path
+    - notes
+
+__tooltips__:
+  mode: "Fixed to 'OTF' for the oscilloscope/pulse-generator checkpoint measurement flow."
+  config_yaml_path: "4155 channel YAML used for the initial sweep and for loading stress time/channel metadata. The analyzer does not apply OTF stress."
+  perform_initial_sweep: "If true, run the analyzer transfer curve before OTF starts. If false, the analyzer YAML is used only as metadata and the analyzer hardware is left untouched."
+  initial_sweep_config_yaml_path: "Optional dedicated YAML for the pre-OTF initial sweep. Empty uses config_yaml_path as the base."
+  pre_stress_delay_s: "Optional delay after the initial sweep before the pulse generator turns on the stress idle voltages."
+  initial_sweep_var: "Sweep variable index used for initial sweep overrides, typically 1 for VG."
+  initial_vstart: "Optional initial-sweep start voltage override for the selected initial_sweep_var."
+  initial_vstop: "Optional initial-sweep stop voltage override for the selected initial_sweep_var."
+  initial_vstep: "Optional initial-sweep step voltage override for the selected initial_sweep_var."
+  initial_sweep_mode: "Optional initial-sweep mode override, e.g. SINGle or DOUBle."
+  fast_sweep: "If true, applies short integration timing for the initial sweep."
+  exp_log_file: "Optional experiment log CSV path. Empty -> run_dir/experiment_log.csv"
+  save_path: "Optional output directory. Empty -> run_dir/artifacts"
+  header_list: "Optional header list for the initial sweep retrieve_data()."
+  stress_channel_values: "Optional programmatic per-channel stress override map. In the IGZO BTI GUI, use Measurement Settings > Stress instead."
+  stress_voltage_list: "Optional programmatic sequential stress-condition override. In the IGZO BTI GUI, use Measurement Settings > Stress per-channel lists instead."
+  oscope_enabled: "Enable oscilloscope arm/capture around every pulse in the OTF measure phase."
+  oscope_resource: "Oscilloscope VISA alias or resource name."
+  oscope_timeout_ms: "Oscilloscope VISA timeout in milliseconds."
+  oscope_debug: "Enable oscilloscope driver debug logging."
+  oscope_config_yaml_path: "Oscilloscope configuration YAML path. Defaults to the IGZO OTF scope setup with external trigger."
+  oscope_mode: "Oscilloscope capture mode passed to ready_for_capture(), typically single."
+  oscope_window_channel: "Reference channel used for the shared window/vertical view settings."
+  oscope_time_scale_s: "Oscilloscope timebase scale in seconds/div."
+  oscope_delay_time_s: "Oscilloscope timebase delay in seconds."
+  oscope_time_position_s: "Oscilloscope timebase position in seconds."
+  oscope_window_voltage_scale_mv: "Shared window voltage scale in mV/div for the selected oscope_window_channel."
+  oscope_window_offset_voltage_mv: "Shared window voltage offset in mV for the selected oscope_window_channel."
+  oscope_trigger_mode: "Oscilloscope trigger mode, typically EDGE."
+  oscope_trigger_source: "Oscilloscope trigger source such as EXTernal, CHANnel1, or CHANnel2."
+  oscope_trigger_slope: "Oscilloscope trigger slope: POSitive, NEGative, or EITHer."
+  oscope_trigger_level_mv: "Oscilloscope trigger level in mV."
+  oscope_trigger_coupling: "Oscilloscope trigger coupling: AC, DC, HFREJ, or LFREJ."
+  oscope_trigger_sweep: "Oscilloscope trigger sweep: AUTO or NORM."
+  oscope_chan1_display: "If true, channel 1 is displayed on the oscilloscope."
+  oscope_chan1_coupling: "Channel 1 input coupling."
+  oscope_chan1_impedance: "Channel 1 input impedance, typically ONEMeg or FIFTy."
+  oscope_chan1_offset_mv: "Channel 1 vertical offset in mV."
+  oscope_chan1_scale_mv: "Channel 1 vertical scale in mV/div."
+  oscope_chan2_display: "If true, channel 2 is displayed on the oscilloscope."
+  oscope_chan2_coupling: "Channel 2 input coupling."
+  oscope_chan2_impedance: "Channel 2 input impedance, typically ONEMeg or FIFTy."
+  oscope_chan2_offset_mv: "Channel 2 vertical offset in mV."
+  oscope_chan2_scale_mv: "Channel 2 vertical scale in mV/div."
+  oscope_channels: "Oscilloscope channels retrieved for every pulse capture."
+  oscope_points: "Number of oscilloscope points retrieved per capture."
+  oscope_wait_timeout_s: "Timeout while waiting for each oscilloscope capture to complete."
+  oscope_arm_settle_s: "Delay between scope arm and pulse fire."
+  oscope_output_subdir: "Subdirectory under artifacts where oscilloscope waveform CSVs are saved."
+  pulsegen_resource: "Pulse generator VISA alias or resource name."
+  pulsegen_timeout_ms: "Pulse generator VISA timeout in milliseconds."
+  pulsegen_debug: "Enable pulse generator driver debug logging."
+  switch_resource: "Optional NI switch matrix resource name. When provided, the runner can route the DUT between analyzer and pulse-generator paths without manual recabling."
+  switch_connect_mode: "Switch-matrix dispatch mode: auto, batch, or sequential."
+  switch_debug: "Enable switch-matrix macro debug logging."
+  switch_route_config_path: "Optional YAML/JSON file containing switch route_configurations."
+  switch_route_configurations: "Optional direct route_configurations mapping. Used when no file path is supplied."
+  switch_analyzer_route_key: "Routing key applied before the optional initial analyzer sweep. Required when switch_resource is set and perform_initial_sweep is true."
+  switch_pulsegen_route_key: "Routing key applied before the pulse-generator OTF phase. Required when switch_resource is set."
+  switch_clear_previous: "If true, disconnect all previous routes before applying the next switch routing key."
+  switch_force_reapply: "If true, reapply the requested routing key even when it matches the currently active switch route."
+  switch_settle_s: "Optional delay after each switch-route application before continuing with the next instrument step."
+  pulse_sequence: "Iterable of pulse recipes. Each entry is fired at every OTF checkpoint, with oscilloscope arm/retrieve around each pulse."
+  debug_timing: "If true, the checkpoint timing CSV is still saved and metadata notes timing mode."
+  show_progress: "If true, display an MSM-style command-line progress bar while waiting for each OTF stress checkpoint."
+  timing_log_path: "Optional explicit path for the checkpoint timing CSV. Empty -> save_path/otf_checkpoint_timing_<timestamp>.csv"
+  notes: "Free-form notes for this run."

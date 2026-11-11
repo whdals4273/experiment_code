@@ -1,0 +1,59 @@
+mode: "MSM"
+config_yaml_path: ""
+initial_sweep_config_yaml_path: ""
+initial_recovery_wait_s: 0.0
+initial_sweep_var: 1
+initial_vstart: ""
+initial_vstop: ""
+initial_vstep: ""
+initial_sweep_mode: ""
+fast_sweep: true
+exp_log_file: ""
+save_path: ""
+header_list: []
+stress_channel_values: {}
+stress_voltage_list: []
+debug_timing: false
+timing_log_path: ""
+notes: ""
+
+__groups__:
+  MSM Stress Test:
+    - mode
+    - config_yaml_path
+    - initial_sweep_config_yaml_path
+    - initial_recovery_wait_s
+    - initial_sweep_var
+    - initial_vstart
+    - initial_vstop
+    - initial_vstep
+    - initial_sweep_mode
+    - fast_sweep
+    - exp_log_file
+    - save_path
+    - header_list
+    - stress_channel_values
+    - stress_voltage_list
+    - debug_timing
+    - timing_log_path
+    - notes
+
+__tooltips__:
+  mode: "Stress mode. Fixed to 'MSM' for measure-stress-measure."
+  config_yaml_path: "4155 channel YAML. With GUI-generated config enabled, this is auto-overridden."
+  initial_sweep_config_yaml_path: "Optional dedicated YAML for the pre-MSM initial sweep. Empty uses config_yaml_path as the base."
+  initial_recovery_wait_s: "Wait time after the initial sweep before the time-zero MSM measurement begins."
+  initial_sweep_var: "Sweep variable index used for initial sweep overrides, typically 1 for VG."
+  initial_vstart: "Optional initial-sweep start voltage override for the selected initial_sweep_var."
+  initial_vstop: "Optional initial-sweep stop voltage override for the selected initial_sweep_var."
+  initial_vstep: "Optional initial-sweep step voltage override for the selected initial_sweep_var."
+  initial_sweep_mode: "Optional initial-sweep mode override, e.g. SINGle or DOUBle."
+  fast_sweep: "If true, applies short integration timing for faster sweep."
+  exp_log_file: "Optional experiment log CSV path. Empty -> run_dir/experiment_log.csv"
+  save_path: "Optional output directory. Empty -> run_dir/artifacts"
+  header_list: "Optional list of headers for retrieve_data()."
+  stress_channel_values: "Optional programmatic per-channel stress override map. In the IGZO BTI GUI, use Measurement Settings > Stress instead."
+  stress_voltage_list: "Optional programmatic sequential stress-condition override. In the IGZO BTI GUI, use Measurement Settings > Stress per-channel lists instead."
+  debug_timing: "If true, log per-cycle stress/sweep durations and save timing CSV."
+  timing_log_path: "Optional explicit path for timing CSV. Empty -> save_path/stability_timing_<timestamp>.csv"
+  notes: "Free-form notes for this run."

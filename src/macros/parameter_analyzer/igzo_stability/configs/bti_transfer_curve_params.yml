@@ -1,0 +1,23 @@
+mode: "sweep"
+config_yaml_path: ""
+fast_sweep: true
+exp_log_file: ""
+save_path: ""
+header_list: []
+
+__groups__:
+  Transfer Curve:
+    - mode
+    - config_yaml_path
+    - fast_sweep
+    - exp_log_file
+    - save_path
+    - header_list
+
+__tooltips__:
+  mode: "Run mode. Fixed to 'sweep' for transfer curve."
+  config_yaml_path: "4155 channel YAML. With GUI-generated config enabled, this is auto-overridden."
+  fast_sweep: "If true, applies short integration timing for faster sweep."
+  exp_log_file: "Optional experiment log CSV path. Empty -> run_dir/experiment_log.csv"
+  save_path: "Optional output directory. Empty -> run_dir/artifacts"
+  header_list: "Optional list of headers for retrieve_data()."

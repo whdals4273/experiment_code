@@ -1,0 +1,39 @@
+model: "DSO-X 3102T"
+
+comm:
+  alias: "Oscope"
+  timeout: 5000
+  termination: "\n"
+
+window:
+  channel: 1
+  voltage_scale_mv: 500
+  offset_voltage_mv: 0.0
+  delay_time_s: 0.0
+
+chan1:
+  display: 1
+  coupling: "DC"
+  impedance: "ONEMeg"
+  offset: 0.0
+  scale: 500
+
+chan2:
+  display: 0
+  coupling: "DC"
+  impedance: "ONEMeg"
+  offset: 0.0
+  scale: 500
+
+trigger:
+  mode: "EDGE"
+  source: "EXTernal"
+  slope: "POSitive"
+  level: 0.0
+  coupling: "DC"
+  sweep: "NORM"
+
+timebase:
+  mode: "MAIN"
+  scale: 1.0e-6
+  position: 0.0
